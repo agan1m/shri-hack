@@ -97,7 +97,105 @@ function checkLeaf2(node, result) {
     result.push(node.node);
 }
 
-console.log(postOrder(treeObj))
+treeObj = 
+{
+    "node": "A",
+    "left": {
+        "node": "B",
+        "left": {
+            "node": "C",
+            "left": {
+                "node": "F",
+                "left": {
+     "node": "F1",
+                    "left": {
+                        "node": "F11"
+                    },
+                    "right": {
+                        "node": "F12"
+                    }
+                },
+                "right": {
+     "node": "F2",
+                    "left": {
+                        "node": "F21"
+                    },
+                    "right": {
+                        "node": "F22"
+                    }
+    }
+            }
+        },
+        "right": {
+            "node": "E",
+   "left": {
+    "node": "E1",
+                "left": {
+                    "node": "E11"
+                },
+                "right": {
+                    "node": "E12"
+                }
+            },
+   "right": {
+    "node": "E2",
+                "left": {
+                    "node": "E21"
+                },
+                "right": {
+                    "node": "E22"
+                }
+            }
+        }
+    },
+    "right": {
+        "node": "D",
+  "left": {
+   "node": "G",
+   "left": {
+    "node": "G1",
+                "left": {
+                    "node": "G11"
+                },
+                "right": {
+                    "node": "G12"
+                }
+            },
+   "right": {
+    "node": "G2",
+                "left": {
+                    "node": "G21"
+                },
+                "right": {
+                    "node": "G22"
+                }
+            }
+        },
+  "right": {
+   "node": "H",
+   "left": {
+    "node": "H1",
+                "left": {
+                    "node": "H11"
+                },
+                "right": {
+                    "node": "H12"
+                }
+            },
+   "right": {
+    "node": "H2",
+                "left": {
+                    "node": "H21"
+                },
+                "right": {
+                    "node": "H22"
+                }
+            }
+        }
+    }
+}
+
+// console.log(postOrder(treeObj))
 
 function bracketsFind(str) {
     const hashBrackets = {
@@ -164,5 +262,54 @@ function binarySearch(arr, num) {
     else return -1;
 }
 
+// console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
 
-console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
+function findCombination(num) {
+    let str = ''
+    let result = [];
+    for(let i = 1; i <= num; i++) {
+        str += i;
+    }
+   result = combinations(str.split(''));
+   return result; 
+}
+
+function create(arr, elem) {
+    let i, iM;
+    let res = [];
+  
+    for(i = arr.length; i >= 0; i--) {
+      res.push(
+        ([]).concat(
+          arr.slice(0, i),
+          [elem],
+          arr.slice(i, iM)
+        )
+      );
+    }
+  
+    return res;
+  }
+  
+  function combinations(arr) {
+    let prev, curr, elem, i;
+  
+    curr = [[arr[0]]];
+  
+    for(i = 1; i < arr.length; i++) {
+      elem = arr[i];
+      prev = curr;
+      curr = [];
+  
+      prev.forEach((item) => {
+        curr = curr.concat(
+            create(item, elem)
+        );
+      });
+    }
+  
+    return curr;
+}
+
+//console.log(findCombination(5))
+
