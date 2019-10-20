@@ -151,5 +151,18 @@ function findSimple(n) {
     return result;
 }
 
+function binarySearch(arr, num) {
+    let i = 0, size = arr.length, half; 
+                                 
+    while (i < size) {
+        half = Math.floor((i + size) / 2);
+        if(num <= arr[half]) size = half;
+        else i = half + 1;
+    }
+   
+    if(arr[i] === num) return i;
+    else return -1;
+}
 
-console.log(findSimple(200));
+
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4));
