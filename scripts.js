@@ -83,7 +83,6 @@ function postOrder(node){
     checkLeaf2(node.left, result);
     checkLeaf2(node.right, result);
     result.push(node.node);
-    //console.log(node.node);
 
     return result;
 } 
@@ -136,5 +135,21 @@ function bracketsFind(str) {
     return result;
 }
 
+function findSimple(n) {
+    if(n < 2) return [];
+    let result = [2];
+    for(let i = 3; i <= n; i++) {
+        for(let j = i - 1; j >= 2; j--) {
+            if(i % j === 0) {
+                break;
+            }
+            if(j === 2) {
+                result.push(i);
+            } 
+        }
+    }
+    return result;
+}
 
-console.log(bracketsFind('ava()[{]}'));
+
+console.log(findSimple(200));
