@@ -20,4 +20,14 @@ function bubbleSort(arr) {
     return arr;
 }
 
+// function selectSort(arr) {
+//     let min = 0;
+//     for(let i = 0; arr.length; i++) {
+//         if(arr[i])
+//     }
+// }
+
+window.bubbleSort = bubbleSort;
+
+
 console.log(bubbleSort([5, 1, 3, 10, 4, 9]))
