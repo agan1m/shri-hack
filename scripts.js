@@ -313,3 +313,75 @@ function create(arr, elem) {
 
 //console.log(findCombination(5))
 
+function snake(num = 4) {
+	let res = [];
+	const maxCount = num * num;
+	let count = 1;
+	let x = num;
+	let y = num;
+
+	for (let i = 0; i < num; i++) {
+		res.push([]);
+	}
+	for (let j = 0; j < x; j++) {
+		res[0][j] = count;
+		count++;
+	}
+	for (let j = 1; j < y; j++) {
+		res[j][x - 1] = count;
+		count++;
+	}
+	for (let j = x - 2; j >= 0; j--) {
+		res[y - 1][j] = count;
+		count++;
+	}
+	for (let j = y - 2; j > 0; j--) {
+		res[j][0] = count;
+		count++;
+	}
+
+	let startX = 1;
+	let startY = 1;
+
+	while (count < maxCount) {
+		while (!res[startY][startX + 1]) {
+			res[startY][startX] = count;
+			count++;
+			startX++;
+		}
+		while (!res[startY + 1][startX]) {
+			res[startY][startX] = count;
+			count++;
+			startY++;
+		}
+		while (!res[startY][startX - 1]) {
+			res[startY][startX] = count;
+			count++;
+			startX--;
+		}
+		while (!res[startY - 1][startX]) {
+			res[startY][startX] = count;
+			count++;
+			startY--;
+		}
+	}
+
+	for (let x = 0; x < num; x++) {
+		for (let y = 0; y < num; y++) {
+			if (!res[x][y]) {
+				res[x][y] = count;
+			}
+		}
+	}
+
+	let str = ``;
+
+	res.forEach((line) => {
+		let s = line.join(' ');
+		str = str + s + '\n';
+	});
+
+	document.body.innerText = str;
+}
+
+snake(8)
